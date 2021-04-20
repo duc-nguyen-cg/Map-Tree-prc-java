@@ -14,26 +14,28 @@ public class BST<E extends Comparable<E>> extends AbstractTree<E>{
     public boolean insert(E e){
         if (root == null){
             root = new TreeNode<>(e);
-            return true;
-        }
-        TreeNode<E> parent = null;
-        TreeNode<E> current = root;
-        while (current != null){
-            if (e.compareTo(current.element) < 0){
-                parent = current;
-                current = current.left;
-            } else if (e.compareTo(current.element) > 0){
-                parent = current;
-                current = current.right;
-            } else {
-                return false;  //node is already in the tree, not insert
-            }
-        }
 
-        if (e.compareTo(parent.element) < 0){
-            parent.left = new TreeNode<>(e);
         } else {
-            parent.right = new TreeNode<>(e);
+            TreeNode<E> parent = null;
+            TreeNode<E> current = root;
+
+            while (current != null){
+                if (e.compareTo(current.element) < 0){
+                    parent = current;
+                    current = current.left;
+                } else if (e.compareTo(current.element) > 0){
+                    parent = current;
+                    current = current.right;
+                } else {
+                    return false;  //node is already in the tree, not insert
+                }
+            }
+
+            if (e.compareTo(parent.element) < 0){
+                parent.left = new TreeNode<>(e);
+            } else {
+                parent.right = new TreeNode<>(e);
+            }
         }
         size++;
         return true; //insert successfully
@@ -57,4 +59,35 @@ public class BST<E extends Comparable<E>> extends AbstractTree<E>{
         System.out.println(root.element + " ");
         inorder(root.right);
     }
+
+
+    @Override
+    public void postorder(){
+        postorder(root);
+    }
+
+    protected void postorder(TreeNode<E> root){
+        if (root == null){
+            return;
+        }
+        postorder(root.left);
+        postorder(root.right);
+        System.out.println(root.element + " ");
+    }
+
+
+    @Override
+    public void preorder(){
+        preorder(root);
+    }
+
+    protected void preorder(TreeNode<E> root){
+        if (root == null){
+            return;
+        }
+        System.out.println(root.element + " ");
+        preorder(root.left);
+        preorder(root.right);
+    }
+
 }

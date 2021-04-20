@@ -3,5 +3,9 @@ public interface Tree<E> {
 
     public void inorder();
 
+    public void postorder();
+
+    public void preorder();
+
     public int getSize();
 }
