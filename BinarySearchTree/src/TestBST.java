@@ -23,5 +23,11 @@ public class TestBST {
         System.out.println("Preorder (sorted): ");
         tree.preorder();
         System.out.println();
+
+        System.out.println("Search name: ");
+        System.out.println(tree.search("Daniel")); //true
+        System.out.println(tree.search("George")); //true
+        System.out.println(tree.search("Michael")); //true
+        System.out.println(tree.search("Hellsing")); //false
     }
 }
